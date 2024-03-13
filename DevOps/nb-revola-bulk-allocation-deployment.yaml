@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: microservice
+  name: bulk-allocation-microservice
+  labels:
+    app: bulk-allocation-microservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bulk-allocation-microservice
+  template:
+    metadata:
+      labels:
+        app: bulk-allocation-microservice
+    spec:
+      imagePullSecret:
+      - name: bulk-allocation-microservice
+      containers:
+      - name: bulk-allocation-microservice-container
+        image: accountid.dkr.ecr.eu-west-3.amazonaws.com/ecrrepo:1.0
+        ports:
+        - containerPort: 8080

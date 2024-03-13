@@ -1,0 +1,33 @@
+{
+  "groups": [
+    {
+      "name": "dmms",
+      "type": "com.newbury.revola.config.DmmConfigurations",
+      "sourceType": "com.newbury.revola.config.DmmConfigurations"
+    },
+    {
+      "name": "security",
+      "type": "com.newbury.revola.security.SecurityProperties",
+      "sourceType": "com.newbury.revola.security.SecurityProperties"
+    },
+    {
+      "name": "security.jwt",
+      "type": "com.newbury.revola.security.SecurityProperties$JwtProperties",
+      "sourceType": "com.newbury.revola.security.SecurityProperties",
+      "sourceMethod": "public com.newbury.revola.security.SecurityProperties.JwtProperties getJwt() "
+    }
+  ],
+  "properties": [
+    {
+      "name": "dmms.dmm",
+      "type": "java.util.List<com.newbury.revola.config.DmmConfigurations$Dmm>",
+      "sourceType": "com.newbury.revola.config.DmmConfigurations"
+    },
+    {
+      "name": "security.jwt.public-key",
+      "type": "org.springframework.core.io.Resource",
+      "sourceType": "com.newbury.revola.security.SecurityProperties$JwtProperties"
+    }
+  ],
+  "hints": []
+}

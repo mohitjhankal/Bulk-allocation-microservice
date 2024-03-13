@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: microservice
+  name: bulk-allocation-microservice
+  labels:
+    app: bulk-allocation-microservice
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 8080
+  selector:
+    app: bulk-allocation-microservice
+
+

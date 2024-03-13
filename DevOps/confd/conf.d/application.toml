@@ -1,0 +1,29 @@
+[template]
+src = "application.tmpl"
+dest = "src/main/resources/application.yml"
+keys = [
+    "/$env/integration/spring.kafka.bootstrap.servers",
+    "/$env/integration/load-Balancer.url",
+    "/$env/integration/dmm.uri.external",
+    "/$env/integration/dmm-api-username",
+    "/$env/integration/dmm-api-password",
+    "/$env/integration/client.access.token.endpoint",
+    "/$env/integration/dmm.rest.api.username",
+    "/$env/integration/dmm.rest.api.password",
+    "/$env/integration/spring.mail.host",
+    "/$env/integration/spring.mail.username",
+    "/$env/integration/spring.mail.password",
+    "/$env/integration/spring.mail.properties.mail.smtp.ssl.trust",
+    "/$env/integration/dmm.error.email.to",
+    "/$env/integration/dmm.error.email.cc",
+    "/$env/integration/dmms.UATVFUK.uri.external",
+    "/$env/integration/dmms.UATVFUK.dmm-api-username",
+    "/$env/integration/dmms.UATVFUK.dmm-api-password",
+    "/$env/integration/dmms.UATVFUK.rest.api.username",
+    "/$env/integration/dmms.UATVFUK.rest.api.password",
+    "/$env/integration/dmms.SBVFGRP.uri.external",
+    "/$env/integration/dmms.SBVFGRP.dmm-api-username",
+    "/$env/integration/dmms.SBVFGRP.dmm-api-password",
+    "/$env/integration/dmms.SBVFGRP.rest.api.username",
+    "/$env/integration/dmms.SBVFGRP.rest.api.password"
+]

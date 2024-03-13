@@ -1,0 +1,104 @@
+spring:
+  application:
+    name: NB-Bulk-Allocation
+  profiles:
+    active: default
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
+  kafka:
+    bootstrap:
+      servers: b-2.dev-integration-cluste.vk98ru.c2.kafka.eu-west-3.amazonaws.com:9092,b-1.dev-integration-cluste.vk98ru.c2.kafka.eu-west-3.amazonaws.com:9092
+  mail:
+    host: outlook.office365.com
+    username: servicedesk@newburydigital.io
+    password: Vaq76400
+    port: 587
+    properties:
+      mail:
+        protocol: smtp
+        smtp:
+          auth: true
+          ssl:
+            trust: outlook.office365.com
+          starttls:
+            enable: true
+        tls: true
+
+security:
+  jwt:
+    public-key: classpath:nbrevola-cert.txt
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+    register-with-eureka: false
+    fetch-registry: false
+    registry-fetch-interval-seconds: 5
+    healthcheck:
+      enabled: true
+  instance:
+    hostname: localhost
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+server:
+  port: 8080
+
+dmm:
+  uri:
+    external: https://dmmtest.ndxdaas.com
+  api:
+    username: WebAPI_Integration
+    password: yP4VtWP4fcsmFgUmgFlF
+  rest:
+    api:
+      username: RESTAPI_user
+      password: UKF8qVZer1OxKsgU4v9EFwYQYh6DZE!
+  error:
+    email:
+      to: newburydev@aspiresys.com
+      cc: elvis.david@newburydigital.io
+
+dmms:
+  dmm:
+    - name: UATVFUK
+      fetch:
+        assets: 'on'
+        scheduler: 'on'
+      uri:
+        external: 'https://dmmtest.ndxdaas.com'
+      api:
+        username: 'WebAPI_Integration'
+        password: 'yP4VtWP4fcsmFgUmgFlF'
+      rest:
+        username: 'RESTAPI_user'
+        password: 'UKF8qVZer1OxKsgU4v9EFwYQYh6DZE!'
+      error:
+        email:
+          to: 'sachin.jagtap@aspiresys.com'
+          cc: 'anusuya.palanisamy@aspiresys.com'
+    - name: SBVFGRP
+      fetch:
+        assets: 'on'
+        scheduler: 'on'
+      uri:
+        external: 'https://dmmsandbox.vodafone.myvbmd.com'
+      api:
+        username: 'WebAPI_Integration'
+        password: 'O1TbO7Hgg74xCtbaXg0kv2vGliHvso'
+      rest:
+        username: 'RESTAPI_user'
+        password: 'UKF8qVZer1OxKsgU4v9EFwYQYh6DZE!'
+      error:
+        email:
+          to: 'sachin.jagtap@aspiresys.com'
+          cc: 'anusuya.palanisamy@aspiresys.com'
+
+
+load-Balancer:
+  url: http://ab05816a-microservice-supp-6255-1109775740.eu-west-3.elb.amazonaws.com
+
+client:
+  access:
+    token:
+      endpoint: http://ab05816a-microservice-supp-6255-1109775740.eu-west-3.elb.amazonaws.com/oauth/token

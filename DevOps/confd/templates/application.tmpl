@@ -1,0 +1,104 @@
+spring:
+  application:
+    name: NB-Bulk-Allocation
+  profiles:
+    active: default
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
+  kafka:
+    bootstrap:
+      servers: {{ getv "/$env/integration/spring.kafka.bootstrap.servers" }}
+  mail:
+    host: {{ getv "/$env/integration/spring.mail.host" }}
+    username: {{ getv "/$env/integration/spring.mail.username" }}
+    password: {{ getv "/$env/integration/spring.mail.password" }}
+    port: 587
+    properties:
+      mail:
+        protocol: smtp
+        smtp:
+          auth: true
+          ssl:
+            trust: {{ getv "/$env/integration/spring.mail.properties.mail.smtp.ssl.trust" }}
+          starttls:
+            enable: true
+        tls: true
+
+security:
+  jwt:
+    public-key: classpath:nbrevola-cert.txt
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+    register-with-eureka: false
+    fetch-registry: false
+    registry-fetch-interval-seconds: 5
+    healthcheck:
+      enabled: true
+  instance:
+    hostname: localhost
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+server:
+  port: 8080
+
+dmm:
+  uri:
+    external: {{ getv "/$env/integration/dmm.uri.external" }}
+  api:
+    username: {{ getv "/$env/integration/dmm-api-username" }}
+    password: {{ getv "/$env/integration/dmm-api-password" }}
+  rest:
+    api:
+      username: {{ getv "/$env/integration/dmm.rest.api.username" }}
+      password: {{ getv "/$env/integration/dmm.rest.api.password" }}
+  error:
+    email:
+      to: {{ getv "/$env/integration/dmm.error.email.to" }}
+      cc: {{ getv "/$env/integration/dmm.error.email.cc" }}
+
+dmms:
+  dmm:
+    - name: UATVFUK
+      fetch:
+        assets: 'on'
+        scheduler: 'on'
+      uri:
+        external: {{ getv "/$env/integration/dmms.UATVFUK.uri.external" }}
+      api:
+        username: {{ getv "/$env/integration/dmms.UATVFUK.dmm-api-username" }}
+        password: {{ getv "/$env/integration/dmms.UATVFUK.dmm-api-password" }}
+      rest:
+        username: {{ getv "/$env/integration/dmms.UATVFUK.rest.api.username" }}
+        password: {{ getv "/$env/integration/dmms.UATVFUK.rest.api.password" }}
+      error:
+        email:
+          to: {{ getv "/$env/integration/dmm.error.email.to" }}
+          cc: {{ getv "/$env/integration/dmm.error.email.cc" }}
+    - name: SBVFGRP
+      fetch:
+        assets: 'on'
+        scheduler: 'on'
+      uri:
+        external: {{ getv "/$env/integration/dmms.SBVFGRP.uri.external" }}
+      api:
+        username: {{ getv "/$env/integration/dmms.SBVFGRP.dmm-api-username" }}
+        password: {{ getv "/$env/integration/dmms.SBVFGRP.dmm-api-password" }}
+      rest:
+        username: {{ getv "/$env/integration/dmms.SBVFGRP.rest.api.username" }}
+        password: {{ getv "/$env/integration/dmms.SBVFGRP.rest.api.password" }}
+      error:
+        email:
+          to: {{ getv "/$env/integration/dmm.error.email.to" }}
+          cc: {{ getv "/$env/integration/dmm.error.email.cc" }}
+
+
+load-Balancer:
+  url: {{ getv "/$env/integration/load-Balancer.url" }}
+
+client:
+  access:
+    token:
+      endpoint: {{ getv "/$env/integration/client.access.token.endpoint" }}
